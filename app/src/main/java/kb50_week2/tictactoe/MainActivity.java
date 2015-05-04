@@ -94,8 +94,9 @@ public class MainActivity extends ActionBarActivity {
         }
 
 
-        this.playField.setSquareValue(id, "X");
-        this.ai.determineNextMove();
+        if (this.playField.setSquareValue(id, "X")) {
+            this.ai.determineNextMove();
+        }
         this.playField.updatePlayfield(this.buttons);
         if (this.playField.isFinished()) {
             Button resetButton = (Button)findViewById(R.id.resetButton);
@@ -104,6 +105,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void reset(View v) {
-        this.playField.reset(this.buttons);
+        this.playField.reset(this.buttons);Button resetButton = (Button)findViewById(R.id.resetButton);
+        resetButton.setVisibility(View.GONE);
     }
 }

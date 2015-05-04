@@ -12,20 +12,20 @@ import java.util.List;
 public class PlayField {
     private List<Square> squares = new ArrayList<>();
 
-    private static final int[][][] WIN_CONDITIONS = {
+    private static final int[][]WIN_CONDITIONS = {
             //Rows
-            {{ 0, 0 }, { 0, 1 }, { 0, 2 }},
-            {{ 1, 0 }, { 1, 1 }, { 1, 2 }},
-            {{ 2, 0 }, { 2, 1 }, { 2, 2 }},
+            {0, 1, 2},
+            {3, 4, 5},
+            {6, 7, 8},
 
             //Columns
-            {{ 0, 0 }, { 1, 0 }, { 2, 0 }},
-            {{ 0, 1 }, { 1, 1 }, { 2, 1 }},
-            {{ 0, 2 }, { 1, 2 }, { 2, 2 }},
+            {0, 3, 6},
+            {1, 4, 7},
+            {2, 5, 8},
 
             //Diagonals
-            {{ 0, 0 }, { 1, 1 }, { 2, 2 }},
-            {{ 2, 0 }, { 1, 1 }, { 0, 2 }}
+            {0, 4, 8},
+            {2, 4, 6}
     };
 
     public PlayField() {
@@ -89,12 +89,16 @@ public class PlayField {
         }
     }
 
-    public void setSquareValue(int id, String value) {
+    public boolean setSquareValue(int id, String value) {
+        if (this.isFinished()) return false;
         for (Square temp_square : this.squares) {
-            if (temp_square.getId() == id) {
+            if (temp_square.getId() == id && temp_square.canEdit()) {
                 temp_square.setValue(value);
+
+                return true;
             }
         }
+        return false;
     }
 
     public List<Square> getSquares() {
@@ -102,21 +106,34 @@ public class PlayField {
     }
 
     public boolean isFinished() {
-        boolean result = true;
+        boolean filled = true;
 
         for (Square square : this.squares) {
             if (square.canEdit()) {
-                result = false;
+                filled =  false;
             }
+        }
+        if (filled) return true;
+
+        return this.hasWon();
+    }
+
+    public boolean hasWon() {
+        boolean result = false;
+        for (int [] i : WIN_CONDITIONS) {
+            String value = null;
+            boolean temp_result = true;
+            for (int x : i) {
+                if ((value == null || value.equals(this.squares.get(x).getValue())) && !this.squares.get(x).getValue().equals("")) {
+                    value = this.squares.get(x).getValue();
+                } else {
+                    temp_result = false;
+                }
+            }
+            if (temp_result) result = true;
+
         }
 
         return result;
-    }
-
-    public boolean checkWinningConditions() {
-        Square[] squareArray = null;
-        this.squares.toArray(squareArray);
-
-        return true;
     }
 }
