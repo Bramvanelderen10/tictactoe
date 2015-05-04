@@ -12,7 +12,7 @@ import java.util.List;
 public class PlayField {
     private List<Square> squares = new ArrayList<>();
 
-    private static final int[][]WIN_CONDITIONS = {
+    public static final int[][]WIN_CONDITIONS = {
             //Rows
             {0, 1, 2},
             {3, 4, 5},
