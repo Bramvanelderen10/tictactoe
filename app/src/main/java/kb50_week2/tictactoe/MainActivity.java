@@ -13,6 +13,8 @@ import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
+    //TODO Create better structure like  MainActivity owns game and game owns AI and playField
+    //ATM mainactivity can be considered a god class
     private PlayField playField;
     private AI ai;
     private ArrayList<Button> buttons = new ArrayList<Button>();
@@ -28,9 +30,9 @@ public class MainActivity extends ActionBarActivity {
         buttons.add((Button)findViewById(R.id.button3));
         buttons.add((Button)findViewById(R.id.button4));
         buttons.add((Button)findViewById(R.id.button5));
-        buttons.add((Button)findViewById(R.id.button6));
-        buttons.add((Button)findViewById(R.id.button7));
-        buttons.add((Button)findViewById(R.id.button8));
+        buttons.add((Button) findViewById(R.id.button6));
+        buttons.add((Button) findViewById(R.id.button7));
+        buttons.add((Button) findViewById(R.id.button8));
 
         Button resetButton = (Button)findViewById(R.id.resetButton);
         resetButton.setVisibility(View.GONE);
@@ -106,7 +108,6 @@ public class MainActivity extends ActionBarActivity {
                 break;
         }
 
-
         if (this.playField.setSquareValue(id, "X")) {
             this.ai.determineNextMove();
         }
@@ -118,14 +119,15 @@ public class MainActivity extends ActionBarActivity {
             TextView textView = (TextView) findViewById(R.id.decision);
             textView.setVisibility(View.GONE);
 
-            boolean decision = (this.playField.hasWon() && this.playField.isFinished()) ? true : false;
-
-            if (!decision) {
-                textView.setText(R.string.win_machine);
-                textView.setVisibility(View.VISIBLE);
-            } else {
-                textView.setText(R.string.win_player);
-                textView.setVisibility(View.VISIBLE);
+            Game.GameStates winner = this.playField.getWinner();
+            switch (winner) {
+                case AI_WON:
+                    textView.setText(R.string.win_machine);
+                    textView.setVisibility(View.VISIBLE);
+                    break;
+                case PLAYER_WON:
+                    textView.setText(R.string.win_player);
+                    textView.setVisibility(View.VISIBLE);
             }
         }
     }

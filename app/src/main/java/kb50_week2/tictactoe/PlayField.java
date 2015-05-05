@@ -12,6 +12,8 @@ import java.util.List;
 public class PlayField {
     private List<Square> squares = new ArrayList<>();
 
+    private Game game;
+
     public static final int[][]WIN_CONDITIONS = {
             //Rows
             {0, 1, 2},
@@ -32,6 +34,7 @@ public class PlayField {
         for (int i = 0; i < 9; i++) {
             squares.add(new Square(i));
         }
+        this.game = new Game();
     }
 
     public boolean reset(List<Button> buttons) {
@@ -113,12 +116,11 @@ public class PlayField {
                 filled =  false;
             }
         }
-        if (filled) return true;
+        if (filled) {
+            this.game.setGamestate(Game.GameStates.PLAYFIELD_FULL);
+            return true;
+        }
 
-        return this.hasWon();
-    }
-
-    public boolean hasWon() {
         boolean result = false;
         for (int [] i : WIN_CONDITIONS) {
             String value = null;
@@ -130,10 +132,22 @@ public class PlayField {
                     temp_result = false;
                 }
             }
-            if (temp_result) result = true;
+
+            //Game is won
+            if (temp_result) {
+                if (value.equals("X")) this.game.setGamestate(Game.GameStates.PLAYER_WON);
+                if (value.equals("O")) this.game.setGamestate(Game.GameStates.AI_WON);
+
+                result = true;
+            }
 
         }
 
         return result;
+    }
+
+    public Game.GameStates getWinner() {
+
+        return this.game.getGamestate();
     }
 }
