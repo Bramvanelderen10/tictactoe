@@ -5,10 +5,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <!--<TableLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -86,7 +86,8 @@
         android:id="@+id/button8"
         android:layout_alignBottom="@+id/button7"
         android:layout_toRightOf="@+id/button7"
-        android:layout_toEndOf="@+id/button7"/>
+        android:layout_toEndOf="@+id/button7"
+        android:onClick="onClick"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -109,6 +110,6 @@
         android:layout_alignRight="@id/resetButton"
         android:layout_alignEnd="@id/resetButton"
         />
-    </TableLayout>
+    <!--</TableLayout>-->
 
 </RelativeLayout>
