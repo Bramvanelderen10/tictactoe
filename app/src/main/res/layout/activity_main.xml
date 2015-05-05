@@ -96,5 +96,15 @@
         android:layout_alignRight="@+id/button8"
         android:layout_alignEnd="@+id/button8"
         android:onClick="reset"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/decision"
+        android:layout_below="@+id/resetButton"
+        android:layout_alignLeft="@id/resetButton"
+        android:layout_alignStart="@id/resetButton"
+        android:layout_alignRight="@id/resetButton"
+        android:layout_alignEnd="@id/resetButton"
+        />
 
 </RelativeLayout>

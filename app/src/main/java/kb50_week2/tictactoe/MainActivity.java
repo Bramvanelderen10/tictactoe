@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,11 +102,27 @@ public class MainActivity extends ActionBarActivity {
         if (this.playField.isFinished()) {
             Button resetButton = (Button)findViewById(R.id.resetButton);
             resetButton.setVisibility(View.VISIBLE);
+
+            TextView textView = (TextView) findViewById(R.id.decision);
+            textView.setVisibility(View.GONE);
+
+            boolean decision = (this.playField.hasWon() && this.playField.isFinished()) ? true : false;
+
+            if (!decision) {
+                textView.setText(R.string.win_machine);
+                textView.setVisibility(View.VISIBLE);
+            } else {
+                textView.setText(R.string.win_player);
+                textView.setVisibility(View.VISIBLE);
+            }
         }
     }
 
     public void reset(View v) {
         this.playField.reset(this.buttons);Button resetButton = (Button)findViewById(R.id.resetButton);
         resetButton.setVisibility(View.GONE);
+
+        TextView textView = (TextView) findViewById(R.id.decision);
+        textView.setVisibility(View.GONE);
     }
 }
