@@ -15,12 +15,12 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity {
     private PlayField playField;
     private AI ai;
-    private List<Button> buttons = new ArrayList<>();
+    private ArrayList<Button> buttons = new ArrayList<Button>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_portrait);
 
         buttons.add((Button)findViewById(R.id.button0));
         buttons.add((Button)findViewById(R.id.button1));
@@ -38,7 +38,6 @@ public class MainActivity extends ActionBarActivity {
         this.playField = new PlayField();
         this.ai = new AI(playField);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,6 +59,19 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        String key = "buttonState";
+
+        savedInstanceState.putSerializable(key, this.buttons);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String key = "buttonState";
+        this.buttons = (ArrayList)savedInstanceState.getSerializable(key);
     }
 
     public void onClick(View v) {
