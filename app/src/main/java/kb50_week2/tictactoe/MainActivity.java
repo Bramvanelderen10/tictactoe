@@ -9,13 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
     //TODO Create better structure like  MainActivity owns game and game owns AI and playField
     //ATM mainactivity can be considered a god class
-    private PlayField playField;
+    private Game game;
     private AI ai;
     private ArrayList<Button> buttons = new ArrayList<Button>();
 
@@ -37,8 +36,8 @@ public class MainActivity extends ActionBarActivity {
         Button resetButton = (Button)findViewById(R.id.resetButton);
         resetButton.setVisibility(View.GONE);
 
-        this.playField = new PlayField();
-        this.ai = new AI(playField);
+        this.game = new Game();
+        this.ai = new AI(game);
     }
 
     @Override
@@ -108,18 +107,18 @@ public class MainActivity extends ActionBarActivity {
                 break;
         }
 
-        if (this.playField.setSquareValue(id, "X")) {
+        if (this.game.setSquareValue(id, "X")) {
             this.ai.determineNextMove();
         }
-        this.playField.updatePlayfield(this.buttons);
-        if (this.playField.isFinished()) {
+        this.game.updatePlayfield(this.buttons);
+        if (this.game.isFinished()) {
             Button resetButton = (Button)findViewById(R.id.resetButton);
             resetButton.setVisibility(View.VISIBLE);
 
             TextView textView = (TextView) findViewById(R.id.decision);
             textView.setVisibility(View.GONE);
 
-            Game.GameStates winner = this.playField.getWinner();
+            Game.GameStates winner = this.game.getGamestate();
             switch (winner) {
                 case AI_WON:
                     textView.setText(R.string.win_machine);
@@ -133,7 +132,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void reset(View v) {
-        this.playField.reset(this.buttons);Button resetButton = (Button)findViewById(R.id.resetButton);
+        this.game.reset(this.buttons);Button resetButton = (Button)findViewById(R.id.resetButton);
         resetButton.setVisibility(View.GONE);
 
         TextView textView = (TextView) findViewById(R.id.decision);

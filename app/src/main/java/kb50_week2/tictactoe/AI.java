@@ -10,23 +10,23 @@ import java.util.Random;
 public class AI {
 
 
-    private PlayField playField;
+    private Game game;
 
-    public AI(PlayField playField) {
-        this.playField = playField;
+    public AI(Game game) {
+        this.game = game;
     }
 
     public void determineNextMove() {
-        if (this.playField.isFinished()) {
+        if (this.game.isFinished()) {
             return;
         }
-        List<Square> squares = this.playField.getSquares();
+        List<Square> squares = this.game.getSquares();
 
 
         Square win = this.finisherMove("O");
         if (win != null) {
 
-            this.playField.setSquareValue(win.getId(), "O");
+            this.game.setSquareValue(win.getId(), "O");
 
             return;
         }
@@ -34,7 +34,7 @@ public class AI {
 
         Square blockSquare = this.finisherMove("X");
         if (blockSquare != null) {
-            this.playField.setSquareValue(blockSquare.getId(), "O");
+            this.game.setSquareValue(blockSquare.getId(), "O");
 
             return;
         }
@@ -47,14 +47,14 @@ public class AI {
         }
         Square square = openSquares.get((new Random()).nextInt(openSquares.size()));
 
-        this.playField.setSquareValue(square.getId(), "O");
+        this.game.setSquareValue(square.getId(), "O");
     }
 
     public Square finisherMove(String value) {
         Square result = null;
 
-        List<Square> squares = this.playField.getSquares();
-        for (int [] i : PlayField.WIN_CONDITIONS) {
+        List<Square> squares = this.game.getSquares();
+        for (int [] i : Game.WIN_CONDITIONS) {
 
             List<Square> opponentSquares = new ArrayList<>();
             List<Square> emptySquares = new ArrayList<>();
