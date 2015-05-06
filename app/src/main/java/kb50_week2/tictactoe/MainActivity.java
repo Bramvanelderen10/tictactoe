@@ -1,5 +1,8 @@
 package kb50_week2.tictactoe;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.res.Configuration;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,11 +15,10 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
-    //TODO Create better structure like  MainActivity owns game and game owns AI and playField
-    //ATM mainactivity can be considered a god class
     private Game game;
+    private GameFragment gameFragment;
     private AI ai;
-    private ArrayList<Button> buttons = new ArrayList<Button>();
+    private ArrayList<Button> buttons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +31,29 @@ public class MainActivity extends ActionBarActivity {
         buttons.add((Button)findViewById(R.id.button3));
         buttons.add((Button)findViewById(R.id.button4));
         buttons.add((Button)findViewById(R.id.button5));
-        buttons.add((Button) findViewById(R.id.button6));
-        buttons.add((Button) findViewById(R.id.button7));
-        buttons.add((Button) findViewById(R.id.button8));
+        buttons.add((Button)findViewById(R.id.button6));
+        buttons.add((Button)findViewById(R.id.button7));
+        buttons.add((Button)findViewById(R.id.button8));
 
         Button resetButton = (Button)findViewById(R.id.resetButton);
         resetButton.setVisibility(View.GONE);
 
-        this.game = new Game();
+        this.gameFragment = null;
+        FragmentManager fm = getFragmentManager();
+
+        this.gameFragment = (GameFragment)fm.findFragmentByTag("gameFragment");
+        if (this.gameFragment == null) {
+            this.game = new Game();
+            this.gameFragment = new GameFragment();
+            this.gameFragment.setGame(game);
+
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.add(this.gameFragment, "gameFragment");
+            ft.commit();
+        } else {
+            this.game = this.gameFragment.getGame();
+        }
+        this.game.updatePlayfield(this.buttons);
         this.ai = new AI(game);
     }
 
@@ -60,19 +77,6 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    protected void onSaveInstanceState(Bundle savedInstanceState) {
-        String key = "buttonState";
-
-        savedInstanceState.putSerializable(key, this.buttons);
-        super.onSaveInstanceState(savedInstanceState);
-    }
-
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        String key = "buttonState";
-        this.buttons = (ArrayList)savedInstanceState.getSerializable(key);
     }
 
     public void onClick(View v) {
