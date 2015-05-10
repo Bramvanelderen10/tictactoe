@@ -52,6 +52,23 @@ public class MainActivity extends ActionBarActivity {
             ft.commit();
         } else {
             this.game = this.gameFragment.getGame();
+            if (this.game.isFinished()) {
+                resetButton.setVisibility(View.VISIBLE);
+
+                TextView textView = (TextView) findViewById(R.id.decision);
+                textView.setVisibility(View.GONE);
+
+                Game.GameStates winner = this.game.getGamestate();
+                switch (winner) {
+                    case AI_WON:
+                        textView.setText(R.string.win_machine);
+                        textView.setVisibility(View.VISIBLE);
+                        break;
+                    case PLAYER_WON:
+                        textView.setText(R.string.win_player);
+                        textView.setVisibility(View.VISIBLE);
+                }
+            }
         }
         this.game.updatePlayfield(this.buttons);
         this.ai = new AI(game);

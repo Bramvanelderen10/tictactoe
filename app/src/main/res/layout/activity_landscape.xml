@@ -22,7 +22,7 @@
             <Button
                 android:id="@+id/button0"
                 android:layout_height="@dimen/button_portrait_height"
--                android:layout_marginLeft="@dimen/button_left_margin"
+                android:layout_marginLeft="@dimen/button_left_margin"
                 android:onClick="onClick" />
 
             <Button
