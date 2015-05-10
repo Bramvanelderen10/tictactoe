@@ -1,115 +1,115 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    tools:context=".MainActivity">
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/button0"
-        android:layout_marginTop="71dp"
-        android:layout_toLeftOf="@+id/button1"
-        android:layout_toStartOf="@+id/button1"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/button1"
-        android:layout_alignTop="@+id/button0"
-        android:layout_centerHorizontal="true"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/button3"
-        android:layout_below="@+id/button0"
-        android:layout_alignLeft="@+id/button0"
-        android:layout_alignStart="@+id/button0"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/button2"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_toRightOf="@+id/button1"
-        android:layout_toEndOf="@+id/button1"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/button4"
-        android:layout_alignBottom="@+id/button3"
-        android:layout_toRightOf="@+id/button3"
-        android:layout_toEndOf="@+id/button3"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/button5"
-        android:layout_alignBottom="@+id/button4"
-        android:layout_toRightOf="@+id/button4"
-        android:layout_toEndOf="@+id/button4"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/button6"
-        android:layout_below="@+id/button3"
-        android:layout_alignLeft="@+id/button3"
-        android:layout_alignStart="@+id/button3"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/button7"
-        android:layout_alignBottom="@+id/button6"
-        android:layout_toRightOf="@+id/button6"
-        android:layout_toEndOf="@+id/button6"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/button8"
-        android:layout_alignBottom="@+id/button7"
-        android:layout_toRightOf="@+id/button7"
-        android:layout_toEndOf="@+id/button7"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset"
-        android:id="@+id/resetButton"
-        android:layout_below="@+id/button6"
-        android:layout_alignLeft="@+id/button6"
-        android:layout_alignStart="@+id/button6"
-        android:layout_alignRight="@+id/button8"
-        android:layout_alignEnd="@+id/button8"
-        android:onClick="reset"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/decision"
-        android:layout_below="@+id/resetButton"
-        android:layout_alignLeft="@id/resetButton"
-        android:layout_alignStart="@id/resetButton"
-        android:layout_alignRight="@id/resetButton"
-        android:layout_alignEnd="@id/resetButton"
-        />
+        android:orientation="horizontal"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button0"
+                android:layout_height="@dimen/button_portrait_height"
+-                android:layout_marginLeft="@dimen/button_left_margin"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_height="@dimen/button_portrait_height"
+                android:layout_marginLeft="@dimen/button_left_margin"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_height="@dimen/button_portrait_height"
+                android:layout_marginLeft="@dimen/button_left_margin"
+                android:onClick="onClick" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_height="@dimen/button_portrait_height"
+                android:layout_marginLeft="@dimen/button_left_margin"
+                android:onClick="onClick" />
+
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_height="@dimen/button_portrait_height"
+                android:layout_marginLeft="@dimen/button_left_margin"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_height="@dimen/button_portrait_height"
+                android:layout_marginLeft="@dimen/button_left_margin"
+                android:onClick="onClick" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_height="@dimen/button_portrait_height"
+                android:layout_marginLeft="@dimen/button_left_margin"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_height="@dimen/button_portrait_height"
+                android:layout_marginLeft="@dimen/button_left_margin"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_height="@dimen/button_portrait_height"
+                android:layout_marginLeft="@dimen/button_left_margin"
+                android:onClick="onClick" />
+        </TableRow>
+
+
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/button8"
+            android:layout_alignLeft="@+id/button6"
+            android:layout_alignRight="@+id/button8"
+            android:layout_alignStart="@+id/button6"
+            android:layout_below="@+id/button6"
+            android:onClick="reset"
+            android:text="Reset" />
+
+        <TextView
+            android:id="@+id/decision"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/resetButton"
+            android:layout_alignLeft="@id/resetButton"
+            android:layout_alignRight="@id/resetButton"
+            android:layout_alignStart="@id/resetButton"
+            android:layout_below="@+id/resetButton" />
     </TableLayout>
 
 </RelativeLayout>
